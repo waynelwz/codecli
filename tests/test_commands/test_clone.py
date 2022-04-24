@@ -11,7 +11,7 @@ def test_should_run_git_clone():
 
     mock_cd.assert_called_with('repo')
     mock_check_call.assert_any_call(
-        ['git', 'clone', 'http://code.dapps.douban.com/repo.git']
+        ['git', 'clone', 'http://github.com/repo.git']
     )
 
 
@@ -24,5 +24,5 @@ def test_should_run_git_clone_with_dir_when_dir_is_given():
 
     mock_cd.assert_called_with('.')
     mock_check_call.assert_any_call(
-        ['git', 'clone', 'http://code.dapps.douban.com/repo.git', '.']
+        ['git', 'clone', 'http://github.com/repo.git', '.']
     )

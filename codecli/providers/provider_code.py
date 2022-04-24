@@ -12,11 +12,11 @@ from codecli.providers.base import GitServiceProvider
 
 
 class CodeProvider(GitServiceProvider):
-    URLS = ['code.dapps.douban.com', 'code.intra.douban.com']
+    URLS = ['github.com', 'code.intra.douban.com']
 
     def send_pullreq(self, head_repo, head_ref, base_repo, base_ref):
 
-        url = ('http://code.dapps.douban.com/%s/newpull/new?' % head_repo) + urlencode(
+        url = ('http://github.com/%s/newpull/new?' % head_repo) + urlencode(
             dict(head_ref=head_ref, base_ref=base_ref, base_repo=base_repo)
         )
         utils.print_log("goto " + url)
@@ -24,11 +24,11 @@ class CodeProvider(GitServiceProvider):
 
     def get_remote_repo_name(self, remote):
         repourl = self.get_remote_repo_url(remote)
-        _, _, reponame = repourl.partition('code.dapps.douban.com/')
+        _, _, reponame = repourl.partition('github.com/')
         if not reponame:
             _, _, reponame = repourl.partition('code.intra.douban.com:')
         if not reponame:
-            _, _, reponame = repourl.partition('code.dapps.douban.com:')
+            _, _, reponame = repourl.partition('github.com:')
         return reponame
 
     def get_remote_repo_url(self, remote):
@@ -42,7 +42,7 @@ class CodeProvider(GitServiceProvider):
 
         giturl = re.sub(r"(?<=http://).+:.+@", "", giturl)
         assert re.match(
-            r"^http://([a-zA-Z0-9]+@)?code.dapps.douban.com/.+\.git$", giturl
+            r"^http://([a-zA-Z0-9]+@)?github.com/.+\.git$", giturl
         ) or re.match(r"^git@code.(intra|dapps).douban.com:.+\.git$", giturl), (
             "This url do not look like code dapps git repo url: %s" % giturl
         )
@@ -55,7 +55,7 @@ class CodeProvider(GitServiceProvider):
 
         if login_user:
             login_user = login_user + '@'
-        CODE_ADDR = 'code.dapps.douban.com'
+        CODE_ADDR = 'github.com'
         return 'http://%s%s/%s.git' % (login_user, CODE_ADDR, repo_name)
 
     def get_username(self):
@@ -83,7 +83,7 @@ class CodeProvider(GitServiceProvider):
             utils.check_call(['git', 'config', key, value])
 
     def get_pullinfo(self, repo, pr_id):
-        url = 'http://code.dapps.douban.com/api/{0}/pull/{1}'.format(repo, pr_id)
+        url = 'http://github.com/api/{0}/pull/{1}'.format(repo, pr_id)
         f = urlopen(url)
         data = json.load(f)
         return data['head']['repo']['name'], data['head']['ref']

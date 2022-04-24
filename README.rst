@@ -2,11 +2,11 @@
 Command Line Tools for CODE
 ===========================
 
-.. image:: http://code.dapps.douban.com/codecli/raw/master/images/codecli-256.png
+.. image:: http://github.com/codecli/raw/master/images/codecli-256.png
 
 这是一个方便使用 `code`_ 进行合作开发的工具。
 
-.. _code: http://code.dapps.douban.com
+.. _code: http://github.com
 
 Install
 =======
@@ -14,7 +14,7 @@ Install
 使用 virtualenv::
 
   $ virtualenv codecli
-  $ codecli/bin/pip install -e git+http://code.dapps.douban.com/codecli.git#egg=codecli
+  $ codecli/bin/pip install -e git+http://github.com/codecli.git#egg=codecli
   $ ln -s `pwd`/codecli/bin/code $HOME/bin/
   # make sure add $HOME/bin to your $PATH
 
@@ -109,7 +109,7 @@ rebase -i`` 清理一下提交，squash 无意义的 oops 或者 tmpsav 之类�
 
     code sync
     git push --set-upstream origin {branch}
-    open http://code.dapps.douban.com/{upstream}/newpull/new?head_ref={branch}&base_ref=master
+    open http://github.com/{upstream}/newpull/new?head_ref={branch}&base_ref=master
 
 如果是 hotfix 分支， 也会设置正确的目标分支 （比如 ``release`` ）
 
@@ -152,7 +152,7 @@ checkout 到某个 pullreq
 
 在 review 某个 pullreq 时，有时我们希望能够在本地 checkout 改动的代码，以便在
 本地执行单元测试、调试等工作。感谢 code 提供的 `使用refs拉取pr
-<http://code.dapps.douban.com/code/docs/pages/pr-refs-and-grunt.html>`_ 的功能
+<http://github.com/code/docs/pages/pr-refs-and-grunt.html>`_ 的功能
 ，可以用如下命令::
 
     code pr {pr_id}
@@ -184,7 +184,7 @@ checkout 或者 merge 他的代码。手工用长长的 git url 加 remote 然�
 
 即可自动创建一个新的 remote ，指向其他人的 fork ，并 fetch 之。相当于::
 
-    git remote add {username} http://code.dapps.douban.com/{username}/{repo}.git
+    git remote add {username} http://github.com/{username}/{repo}.git
     git fetch {username}
 
 这要求其他人的 fork 遵循 code 的新的二级目录的结构（即 username/repo）。如果

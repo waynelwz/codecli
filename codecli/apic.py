@@ -4,11 +4,11 @@ import json
 
 from six.moves.urllib.request import urlopen
 
-ENDPOINT = 'http://code.dapps.douban.com/api/'
+ENDPOINT = 'http://github.com/api/'
 
 
 def get(path):
-    f = urlopen('http://code.dapps.douban.com/api/' + path)
+    f = urlopen('http://github.com/api/' + path)
     return json.load(f)
 
 
