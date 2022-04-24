@@ -17,7 +17,7 @@ MODULES = []
 PACKAGES = find_packages(exclude=['tests.*', 'tests', 'examples.*', 'examples'])
 ENTRY_POINTS = """
 [console_scripts]
-code = codecli:main
+codecli = codecli:main
 """
 
 # dependencies
